@@ -1,20 +1,51 @@
-// CppPrWork4_(7).cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+
+using namespace std;
+
+class Point {
+protected:
+    int x;
+    int y;
+public:
+    Point(int _x, int _y){
+        x = _x;
+        y = _y;
+    }
+    void print()const {
+        cout << "(" << x << "," << y << ")" << endl;
+    }
+    virtual void mirror() {
+        x = -x;
+        y = -y;
+    }
+};
+
+class Cpoint: public Point {
+    char title;
+public:
+    Cpoint(int _x, int _y, char _t):
+        Point(_x, _y) {
+            this->title = _t;
+        }
+    void cPrint()const {
+        cout << title;
+        Point::print();
+    }
+    void mirror() override {
+        title = 'R';
+        x = -x;
+        y = -y;
+    }
+};
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    Cpoint cp(2, 5, 'W');
+    cp.cPrint();
+    cp.mirror();
+    cp.cPrint();
+    Point* rp = new Cpoint(3, 9, 'M');
+    rp->print();
+    rp->mirror();
+    rp->print();
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
