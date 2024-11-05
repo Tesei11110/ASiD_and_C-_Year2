@@ -53,7 +53,6 @@ FootballPlayer getBestForward(FootballPlayer* players, int count) {
     return bestForward;
 }
 
-// Функція для виведення футболістів з менше ніж 5 іграми
 void printPlayersWithLessThan5Games(FootballPlayer* players, int count) {
     for (int i = 0; i < count; i++) {
         if (players[i].gamesPlayed < 5) {
